@@ -13,6 +13,7 @@ export default function App() {
   const clientCode = '<CompanyCode>';
   const userToken = '<UserToken>';
 
+  
   return (
     <View style={styles.container}>
       {showQms ? (
