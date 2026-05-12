@@ -28,7 +28,8 @@ export default function App() {
             onClose={() => {
               //to handle when user close sdk
             }}
-            payload={"to add payload form notification to show in app notification"}
+            //payload to send in app notification for sdk 
+            // payload={notificationData}
             onAnalyticsScreen={(screenName: string) => {
               if (screenName) {
                 console.log('onAnalyticsScreen : ' + screenName);
