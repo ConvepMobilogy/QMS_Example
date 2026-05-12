@@ -16,7 +16,7 @@ The app shows a simple `Open QMS` button. Pressing it renders the native `QmsDas
 Install JavaScript dependencies:
 
 ```sh
-npm install
+yarn install
 ```
 
 Install iOS pods:
@@ -44,19 +44,19 @@ Replace them with the credentials provided for your QMS environment.
 Start Metro:
 
 ```sh
-npm start
+yarn start
 ```
 
 Run Android:
 
 ```sh
-npm run android
+yarn run android
 ```
 
 Run iOS:
 
 ```sh
-npm run ios
+yarn run ios
 ```
 
 ## QMS Usage
@@ -115,13 +115,13 @@ npx tsc --noEmit
 Run lint:
 
 ```sh
-npm run lint
+yarn run lint
 ```
 
 Run tests:
 
 ```sh
-npm test
+yarn test
 ```
 
 ## Android Notes
