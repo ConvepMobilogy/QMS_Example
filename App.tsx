@@ -1,45 +1,63 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+import React from 'react';
 import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+  Button,
+  StyleSheet,
+  View,
+} from 'react-native';
+import { QmsDashboardView } from '@convep_mobilogy/react-native-qms-plugin';
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+export default function App() {
+  const [showQms, setShowQms] = React.useState(false);
 
-  return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
-    </SafeAreaProvider>
-  );
-}
-
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
+  const clientID = '<ClientID>';
+  const clientCode = '<CompanyCode>';
+  const userToken = '<UserToken>';
 
   return (
     <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
+      {showQms ? (
+      <QmsDashboardView
+            style={styles.container}
+            clientID={String(clientID)}
+            clientCode={String(clientCode)}
+            user_token={String(userToken)}
+            onLocate={(lat: string, lng : string) => {
+              //to throw user to google maps or any maps application to navigate purpose
+            }}
+            onClose={() => {
+              //to handle when user close sdk
+            }}
+            payload={"to add payload form notification to show in app notification"}
+            onAnalyticsScreen={(screenName: string) => {
+              if (screenName) {
+                console.log('onAnalyticsScreen : ' + screenName);
+              }
+            }}
+            onAnalyticsEvent={(
+              eventName: string,
+              params?: Record<string, unknown>,
+            ) => {
+              if (eventName) {
+                console.log(
+                  'onAnalytics : ' + eventName + JSON.stringify(params),
+                );
+              }
+            }}
+
+            themeColor="#0E7392"
+            accentColor="#FFFFFF"
+            headerThemeColor="#FFFFFF"
+          />
+      ) : (
+        <View style={styles.center}>
+          <Button title="Open QMS" onPress={() => setShowQms(true)} />
+        </View>
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  container: { flex: 1 },
+  center: { flex: 1, justifyContent: 'center', gap: 12, paddingHorizontal: 24 },
 });
-
-export default App;
